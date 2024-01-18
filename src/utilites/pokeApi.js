@@ -10,29 +10,32 @@ function getRandomPokeNumber() {
   return num
 }
 
+function getPokeSprites(poke) {
+  const sprites = {
+    default: {
+      front: poke.sprites.front_default,
+      back: poke.sprites.back_default,
+    },
+    shiny: {
+      front: poke.sprites.front_shiny,
+      back: poke.sprites.back_shiny,
+    },
+    femaleDefault: {
+      front: poke.sprites.front_female,
+      back: poke.sprites.back_female,
+    },
+    femaleShiny: {
+      front: poke.sprites.front_shiny_female,
+      back: poke.sprites.back_shiny_female,
+    }
+  }
+  return sprites
+}
+
 function getPokeGender() {
   // the poke api's /gender/{name or id} endpoint isn't working for whatever reason
   const genders = ['male', 'female']
   return genders[Math.floor(Math.random())]
-}
-
-function getPokeMoveset(poke) {
-  const moveArray = poke.moves
-  const moveset = []
-  while (moveset.length < 4) {
-    let num = Math.floor(Math.random() * moveArray.length)
-    let currentMove = moveArray[num].move
-    const duplicate = moveset.find(move => {
-      return move.name === currentMove.name
-    })
-    if (duplicate) {
-      console.log(`There is a duplicate , ${duplicate}`)
-      return
-    }
-    moveset.push(currentMove)
-  }
-  console.log(moveset)
-  return moveset
 }
 
 function getPokeStats(poke) {
@@ -46,7 +49,36 @@ function getPokeStats(poke) {
   return readyPoke
 }
 
+async function getPokeMoveset(poke) {
+  const moveArray = poke.moves
+  const moveset = []
+  while (moveset.length < 4) {
+    let num = Math.floor(Math.random() * moveArray.length)
+    let currentMove = moveArray[num].move
+    const duplicate = moveset.find(move => {
+      return move.name === currentMove.name
+    })
+    if (duplicate) {
+      console.log(`There is a duplicate , ${duplicate}`)
+      return
+    }
+    const response = await axios.get(currentMove.url)
+    const data = response.data
+    const moveObj = {
+      name: capitalizeFirstLetter(currentMove.name),
+      accuracy: data.accuracy || 100,
+      power: data.power || 0,
+      pp: data.pp,
+      type: capitalizeFirstLetter(data.type.name)
+    }
+    moveset.push(moveObj)
+  }
+  console.log(moveset)
+  return moveset
+}
+
 function getFullPoke(poke) {
+  const sprites = getPokeSprites(poke)
   const gender = getPokeGender()
   const stats = getPokeStats(poke)
   const moveset = getPokeMoveset(poke)
@@ -54,6 +86,7 @@ function getFullPoke(poke) {
     name: capitalizeFirstLetter(poke.name),
     level: Math.floor(Math.random() * 100),
     gender,
+    sprites,
     ...stats,
     moveset,
   }
