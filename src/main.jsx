@@ -3,8 +3,8 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx"
-import "./index.css";
-import Gameboy from "./pages/Gameboy.jsx";
+import "./css/style.css"
+import Battle from "./pages/Battle.jsx";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +14,7 @@ const router = createBrowserRouter([
   },
   {
     path: "gameboy",
-    element: <Gameboy />,
+    element: <Battle />,
   }
 ]);
 

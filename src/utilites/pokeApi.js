@@ -35,7 +35,7 @@ function getPokeSprites(poke) {
 function getPokeGender() {
   // the poke api's /gender/{name or id} endpoint isn't working for whatever reason
   const genders = ['male', 'female']
-  return genders[Math.floor(Math.random())]
+  return genders[Math.floor(Math.random() * 2)]
 }
 
 function getPokeStats(poke) {
@@ -87,7 +87,7 @@ function getFullPoke(poke) {
     level: Math.floor(Math.random() * 100),
     gender,
     sprites,
-    ...stats,
+    stats: { ...stats },
     moveset,
   }
   console.log(fullPoke)
