@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getPokemon } from "../utilites/pokeApi";
+import { battle } from "../utilites/battle"
 import "../css/battle.css";
 
 export default function Battle() {
@@ -57,7 +58,11 @@ export default function Battle() {
             <p>What will {partnerPoke?.name} do?</p>
           </div>
           <div id="buttonsContainer">
-            <button id="fightButton" className="button">
+            <button
+              id="fightButton"
+              className="button"
+              onClick={() => battle(partnerPoke?.moveset[0], partnerPoke, wildPoke)}
+            >
               Fight
             </button>
             <button id="bagButton" className="button">
