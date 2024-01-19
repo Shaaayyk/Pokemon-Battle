@@ -77,11 +77,11 @@ async function getPokeMoveset(poke) {
   return moveset
 }
 
-function getFullPoke(poke) {
+async function getFullPoke(poke) {
   const sprites = getPokeSprites(poke)
   const gender = getPokeGender()
   const stats = getPokeStats(poke)
-  const moveset = getPokeMoveset(poke)
+  const moveset = await getPokeMoveset(poke)
   const fullPoke = {
     name: capitalizeFirstLetter(poke.name),
     level: Math.floor(Math.random() * 100),
@@ -99,7 +99,7 @@ export async function getPokemon() {
   const response = await axios.get(url)
   const data = response.data
   console.log(data)
-  const fullPoke = getFullPoke(data)
+  const fullPoke = await getFullPoke(data)
   return fullPoke
 }
 
