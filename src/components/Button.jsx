@@ -1,8 +1,12 @@
 import { capitalizeFirstLetter } from "../utilites/pokeApi";
 
-export default function Button({ name }) {
+export default function Button({ name, setCurrentMenu }) {
   return (
-    <button id={`${name}Button`} className="button">
+    <button
+      id={`${name}Button`}
+      className="button"
+      onClick={() => setCurrentMenu(name)}
+    >
       {capitalizeFirstLetter(name)}
     </button>
   );

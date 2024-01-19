@@ -112,3 +112,25 @@ progress::-webkit-progress-value {
   border-radius: 7px;
   width: 48vw;
 }
+
+#fightContainer {
+  grid-column: 1/3;
+  grid-row: 3/4;
+  background-color: lightgrey;
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
+
+#moveset {
+  grid-column: 1/2;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  align-items: center;
+}
+
+#ppBox {
+  grid-column: 2/3;
+  display: grid;
+  align-items: center;
+}

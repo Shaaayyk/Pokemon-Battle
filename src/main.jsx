@@ -5,6 +5,10 @@ import Home from "./pages/Home.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx"
 import "./css/style.css"
 import Battle from "./pages/Battle.jsx";
+import Fight from "./components/Fight.jsx";
+import Bag from "./components/Bag.jsx"
+import Pokemon from "./components/Pokemon.jsx"
+import Run from "./components/Run.jsx"
 
 const router = createBrowserRouter([
   {
@@ -15,6 +19,25 @@ const router = createBrowserRouter([
   {
     path: "gameboy",
     element: <Battle />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "fight",
+        element: <Fight />,
+      },
+      {
+        path: "bag",
+        element: <Bag />,
+      },
+      {
+        path: "pokemon",
+        element: <Pokemon />,
+      },
+      {
+        path: "run",
+        element: <Run />,
+      },
+    ],
   }
 ]);
 

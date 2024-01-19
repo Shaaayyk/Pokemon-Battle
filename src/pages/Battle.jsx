@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
 import { getPokemon } from "../utilites/pokeApi";
 import "../css/battle.css";
 
+import WildPokeLayout from "../components/WildPokeLayout";
+import PartnerPokeLayout from "../components/PartnerPokeLayout";
 import Menu from "../components/Menu";
 
 export default function Battle() {
   const [partnerPoke, setPartnerPoke] = useState(null);
   const [wildPoke, setWildPoke] = useState(null);
+  const [currentMenu, setCurrentMenu] = useState(null);
 
   useEffect(() => {
     async function fetchPokemon() {
@@ -21,39 +25,12 @@ export default function Battle() {
   return (
     <>
       <div id="battleContainer">
-        <div id="wildPokeLayout">
-          <div className="statsContainer">
-            <p>{wildPoke?.name}</p>
-            <p>Lv{wildPoke?.level}</p>
-            <progress
-              max={wildPoke?.stats.hp}
-              value={wildPoke?.stats.currentHp}
-            />
-          </div>
-          <div className="pokeImage">
-            <img
-              src={wildPoke?.sprites.default.front}
-              alt={`${wildPoke?.name} image`}
-            />
-          </div>
-        </div>
-        <div id="partnerPokeLayout">
-          <div className="pokeImage">
-            <img
-              src={partnerPoke?.sprites.default.back}
-              alt={`${partnerPoke?.name} image`}
-            />
-          </div>
-          <div className="statsContainer">
-            <p>{partnerPoke?.name}</p>
-            <p>Lv{partnerPoke?.level}</p>
-            <progress
-              max={partnerPoke?.stats.hp}
-              value={partnerPoke?.stats.currentHp}
-            />
-          </div>
-        </div>
-        <Menu partnerPoke={partnerPoke}/>
+        <WildPokeLayout wildPoke={wildPoke} />
+        <PartnerPokeLayout partnerPoke={partnerPoke} />
+        {currentMenu === null ? (
+          <Menu partnerPoke={partnerPoke} setCurrentMenu={setCurrentMenu} />
+        ) : null}
+        {currentMenu === "fight" ? <Outlet context={[partnerPoke, wildPoke]}/> : null}
       </div>
     </>
   );
