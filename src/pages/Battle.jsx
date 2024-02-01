@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { getPokemon } from "../utilites/pokeApi";
-import "../css/battle.css";
 
 import WildPokeLayout from "../components/WildPokeLayout";
 import PartnerPokeLayout from "../components/PartnerPokeLayout";
 import Menu from "../components/Menu";
+import "../css/battle.css";
 
 export default function Battle() {
   const [partnerPoke, setPartnerPoke] = useState(null);

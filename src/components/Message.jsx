@@ -5,9 +5,9 @@ export default function Message({ messages, setMessages }) {
     setMessages(updatedMessages)
   }
   return (
-    <div>
-      <p>{messages.length && messages[0]}</p>
-      <p onClick={() => handleClick(messages)}>&#9660;</p>
+    <div id="messageContainer">
+      <p className="message">{messages.length && messages[0]}</p>
+      <p className="arrow" onClick={() => handleClick(messages)}>&#9660;</p>
     </div>
   )
 }

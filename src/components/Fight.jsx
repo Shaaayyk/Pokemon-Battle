@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { battle } from "../utilites/battle";
+
 import Message from "./Message";
 
 export default function Fight() {
@@ -28,9 +29,9 @@ export default function Fight() {
     }
   }
   return (
-    <div id="fightContainer">
+    <>
       {messages.length ? <Message messages={messages} setMessages={setMessages}/> :
-        <>
+        <div id="fightContainer">
           <div id="moveset">
             {partnerPoke?.moveset.map((move, index) => (
               <p
@@ -56,8 +57,8 @@ export default function Fight() {
               <p>Select a move for more info!</p>
             </div>
           )}
-        </>
+        </div>
       }
-    </div>
+    </>
   );
 }
