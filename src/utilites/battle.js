@@ -152,6 +152,6 @@ export function battle(attackingMove, partnerPoke, wildPoke) {
     messages
   }
   console.log(returnObj)
-  console.log(hasAttacked, needsToAttack)
+  // console.log(hasAttacked, needsToAttack)
   return returnObj
 }

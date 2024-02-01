@@ -73,7 +73,7 @@ async function getPokeMoveset(poke) {
     }
     moveset.push(moveObj)
   }
-  console.log(moveset)
+  // console.log(moveset)
   return moveset
 }
 
@@ -90,7 +90,7 @@ async function getFullPoke(poke) {
     stats: { ...stats },
     moveset,
   }
-  console.log(fullPoke)
+  // console.log(fullPoke)
   return fullPoke
 }
 
@@ -98,7 +98,7 @@ export async function getPokemon() {
   const url = `https://pokeapi.co/api/v2/pokemon/${getRandomPokeNumber()}/`;
   const response = await axios.get(url)
   const data = response.data
-  console.log(data)
+  // console.log(data)
   const fullPoke = await getFullPoke(data)
   return fullPoke
 }
