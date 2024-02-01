@@ -9,7 +9,9 @@ import Menu from "../components/Menu";
 
 export default function Battle() {
   const [partnerPoke, setPartnerPoke] = useState(null);
+  const [partnerPokeHp, setPartnerPokeHp] = useState(null);
   const [wildPoke, setWildPoke] = useState(null);
+  const [wildPokeHp, setWildPokeHp] = useState(null);
   const [currentMenu, setCurrentMenu] = useState(null);
 
   useEffect(() => {
@@ -25,12 +27,16 @@ export default function Battle() {
   return (
     <>
       <div id="battleContainer">
-        <WildPokeLayout wildPoke={wildPoke} />
-        <PartnerPokeLayout partnerPoke={partnerPoke} />
+        <WildPokeLayout wildPoke={wildPoke} wildPokeHp={wildPokeHp} />
+        <PartnerPokeLayout partnerPoke={partnerPoke} partnerPokeHp={partnerPokeHp} />
         {currentMenu === null ? (
           <Menu partnerPoke={partnerPoke} setCurrentMenu={setCurrentMenu} />
         ) : null}
-        {currentMenu === "fight" ? <Outlet context={[partnerPoke, wildPoke]}/> : null}
+        {currentMenu === "fight" ? (
+          <Outlet
+            context={[partnerPoke, setPartnerPokeHp, wildPoke, setWildPokeHp]}
+          />
+        ) : null}
       </div>
     </>
   );

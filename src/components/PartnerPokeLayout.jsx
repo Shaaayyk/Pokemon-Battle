@@ -1,4 +1,4 @@
-export default function PartnerPokeLayout({partnerPoke}) {
+export default function PartnerPokeLayout({ partnerPoke, partnerPokeHp }) {
   return (
     <div id="partnerPokeLayout">
       <div className="pokeImage">
@@ -12,7 +12,7 @@ export default function PartnerPokeLayout({partnerPoke}) {
         <p>Lv{partnerPoke?.level}</p>
         <progress
           max={partnerPoke?.stats.hp}
-          value={partnerPoke?.stats.currentHp}
+          value={partnerPokeHp ? partnerPokeHp : partnerPoke?.stats.currentHp}
         />
       </div>
     </div>

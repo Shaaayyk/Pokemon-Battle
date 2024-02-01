@@ -5,7 +5,8 @@ import { battle } from "../utilites/battle";
 export default function Fight() {
   const [currentMove, setCurrentMove] = useState(null);
   const [alreadySelected, setAlreadySelected] = useState(false);
-  const [partnerPoke, wildPoke] = useOutletContext();
+  const [partnerPoke, setPartnerPokeHp, wildPoke, setWildPokeHp] =
+    useOutletContext();
 
   function handleMoveSelect(move) {
     setCurrentMove(move);
@@ -14,11 +15,13 @@ export default function Fight() {
 
   function handleSelected(move, partnerPoke, wildPoke) {
     if (move.name === currentMove.name) {
-      battle(move, partnerPoke, wildPoke);
+      const battleResponse = battle(move, partnerPoke, wildPoke);
+      setPartnerPokeHp(battleResponse?.partnerPoke.stats.currentHp)
+      setWildPokeHp(battleResponse?.wildPoke.stats.currentHp)
       setCurrentMove(null);
       setAlreadySelected(false);
     } else {
-      setCurrentMove(move)
+      setCurrentMove(move);
     }
   }
   return (
