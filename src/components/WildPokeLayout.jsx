@@ -2,12 +2,15 @@ export default function WildPokeLayout({ wildPoke, wildPokeHp }) {
   return (
     <div id="wildPokeLayout">
       <div className="statsContainer">
-        <p>{wildPoke?.name}</p>
-        <p>Lv{wildPoke?.level}</p>
-        <progress
-          max={wildPoke?.stats.hp}
-          value={wildPokeHp ? wildPokeHp : wildPoke?.stats.currentHp}
-        />
+        <p className="pokeName">{wildPoke?.name}</p>
+        <p className="pokeLevel">Lv{wildPoke?.level}</p>
+        <div className="progressContainer">
+          <p>HP</p>
+          <progress
+            max={wildPoke?.stats.hp}
+            value={wildPokeHp ? wildPokeHp : wildPoke?.stats.currentHp}
+          />
+        </div>
       </div>
       <div className="pokeImage">
         <img

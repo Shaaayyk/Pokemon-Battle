@@ -8,12 +8,15 @@ export default function PartnerPokeLayout({ partnerPoke, partnerPokeHp }) {
         />
       </div>
       <div className="statsContainer">
-        <p>{partnerPoke?.name}</p>
-        <p>Lv{partnerPoke?.level}</p>
-        <progress
-          max={partnerPoke?.stats.hp}
-          value={partnerPokeHp ? partnerPokeHp : partnerPoke?.stats.currentHp}
-        />
+        <p className="pokeName">{partnerPoke?.name}</p>
+        <p className="pokeLevel">Lv {partnerPoke?.level}</p>
+        <div className="progressContainer">
+          <p>HP</p>
+          <progress
+            max={partnerPoke?.stats.hp}
+            value={partnerPokeHp ? partnerPokeHp : partnerPoke?.stats.currentHp}
+          />
+        </div>
       </div>
     </div>
   );
