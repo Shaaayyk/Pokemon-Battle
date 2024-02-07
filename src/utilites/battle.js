@@ -14,6 +14,7 @@ export function battle(attackingMove, partnerPoke, wildPoke) {
     // if the wildPoke goes first randomly select a move from the moveset
     hasAttacked.wildPoke = true
     needsToAttack.wildPoke = false
+    // console.log(wildPoke)
     const ranNum = Math.floor(Math.random() * wildPoke.moveset.length)
     const wildMove = wildPoke.moveset[ranNum]
     // send a message with move

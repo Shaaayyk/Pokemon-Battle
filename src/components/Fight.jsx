@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useOutletContext, useNavigate } from "react-router-dom";
 import { battle } from "../utilites/battle";
 
 import Message from "./Message";
@@ -10,6 +10,16 @@ export default function Fight() {
   const [messages, setMessages] = useState([]);
   const [partnerPoke, setPartnerPokeHp, wildPoke, setWildPokeHp] =
     useOutletContext();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (
+      messages.length === 0 &&
+      (partnerPoke?.stats?.currentHp === 0 || wildPoke?.stats?.currentHp === 0)
+    ) {
+      navigate("/");
+    }
+  }, [messages.length]);
 
   function handleMoveSelect(move) {
     setCurrentMove(move);
@@ -42,7 +52,7 @@ export default function Fight() {
       ) : (
         <div id="fightContainer">
           <div id="moveset">
-            {partnerPoke?.moveset.map((move, index) => (
+            {partnerPoke?.moveset?.map((move, index) => (
               <p
                 className="move"
                 onClick={() =>

@@ -60,7 +60,7 @@ async function getPokeMoveset(poke) {
     })
     if (duplicate) {
       console.log(`There is a duplicate , ${duplicate.name}`)
-      return
+      continue
     }
     const response = await axios.get(currentMove.url)
     const data = response.data
