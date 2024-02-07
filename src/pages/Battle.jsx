@@ -27,6 +27,8 @@ export default function Battle() {
         }
         setPartnerPoke(pokeOne);
         setWildPoke(pokeTwo);
+        setPartnerPokeHp(null)
+        setWildPokeHp(null)
       }
       fetchPokemon();
     }

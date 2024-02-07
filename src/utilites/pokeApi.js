@@ -51,7 +51,7 @@ function getPokeStats(poke) {
 
 async function getPokeMoveset(poke) {
   const moveArray = poke.moves
-  const moveset = []
+  let moveset = []
   while (moveset.length < 4) {
     let num = Math.floor(Math.random() * moveArray.length)
     let currentMove = moveArray[num].move
@@ -72,6 +72,14 @@ async function getPokeMoveset(poke) {
       type: capitalizeFirstLetter(data.type.name)
     }
     moveset.push(moveObj)
+    if (moveset.length === 3) {
+      const anyPowerMoves = moveset.find(move => {
+        return move.power > 0
+      })
+      if (!anyPowerMoves) {
+        moveset = []
+      }
+    }
   }
   // console.log(moveset)
   return moveset
