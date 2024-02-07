@@ -15,26 +15,61 @@ export default function Battle() {
   const [currentMenu, setCurrentMenu] = useState(null);
 
   useEffect(() => {
-    async function fetchPokemon() {
-      const pokeOne = await getPokemon();
-      const pokeTwo = await getPokemon();
-      setPartnerPoke(pokeOne);
-      setWildPoke(pokeTwo);
+    if (currentMenu === null) {
+      async function fetchPokemon() {
+        let pokeOne = await getPokemon();
+        while (pokeOne.sprites.default.back === null) {
+          pokeOne = await getPokemon();
+        }
+        let pokeTwo = await getPokemon();
+        while (pokeTwo.name === pokeOne.name) {
+          pokeTwo = await getPokemon();
+        }
+        setPartnerPoke(pokeOne);
+        setWildPoke(pokeTwo);
+      }
+      fetchPokemon();
     }
-    fetchPokemon();
-  }, []);
+  }, [currentMenu]);
 
   return (
     <>
       <div id="battleContainer">
         <WildPokeLayout wildPoke={wildPoke} wildPokeHp={wildPokeHp} />
-        <PartnerPokeLayout partnerPoke={partnerPoke} partnerPokeHp={partnerPokeHp} />
+        <PartnerPokeLayout
+          partnerPoke={partnerPoke}
+          partnerPokeHp={partnerPokeHp}
+        />
         {currentMenu === null ? (
           <Menu partnerPoke={partnerPoke} setCurrentMenu={setCurrentMenu} />
         ) : null}
         {currentMenu === "fight" ? (
           <Outlet
-            context={[partnerPoke, setPartnerPokeHp, wildPoke, setWildPokeHp]}
+            context={[
+              partnerPoke,
+              setPartnerPokeHp,
+              wildPoke,
+              setWildPokeHp,
+              setCurrentMenu,
+            ]}
+          />
+        ) : null}
+        {currentMenu === "defeat" ? (
+          <Outlet
+            context={[
+              partnerPoke,
+              wildPoke,
+              setCurrentMenu,
+            ]}
+          />
+        ) : null}
+        {currentMenu === "victory" ? (
+          <Outlet
+            context={[
+              partnerPoke,
+              wildPoke,
+              setCurrentMenu,
+            ]}
           />
         ) : null}
       </div>

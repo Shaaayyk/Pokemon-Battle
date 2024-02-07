@@ -9,6 +9,7 @@ import Fight from "./components/Fight.jsx";
 import Bag from "./components/Bag.jsx"
 import Pokemon from "./components/Pokemon.jsx"
 import Run from "./components/Run.jsx"
+import GameOver from "./components/GameOver.jsx";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,14 @@ const router = createBrowserRouter([
       {
         path: "run",
         element: <Run />,
+      },
+      {
+        path: "victory",
+        element: <GameOver />,
+      },
+      {
+        path: "defeat",
+        element: <GameOver />,
       },
     ],
   }

@@ -8,8 +8,13 @@ export default function Fight() {
   const [currentMove, setCurrentMove] = useState(null);
   const [alreadySelected, setAlreadySelected] = useState(false);
   const [messages, setMessages] = useState([]);
-  const [partnerPoke, setPartnerPokeHp, wildPoke, setWildPokeHp] =
-    useOutletContext();
+  const [
+    partnerPoke,
+    setPartnerPokeHp,
+    wildPoke,
+    setWildPokeHp,
+    setCurrentMenu,
+  ] = useOutletContext();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,7 +22,14 @@ export default function Fight() {
       messages.length === 0 &&
       (partnerPoke?.stats?.currentHp === 0 || wildPoke?.stats?.currentHp === 0)
     ) {
-      navigate("/");
+      partnerPoke?.stats?.currentHp === 0
+        ? setCurrentMenu("defeat")
+        : setCurrentMenu("victory")
+      navigate(
+        partnerPoke?.stats?.currentHp === 0
+          ? "/gameboy/defeat"
+          : "/gameboy/victory"
+      );
     }
   }, [messages.length]);
 
