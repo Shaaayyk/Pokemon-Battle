@@ -17,7 +17,11 @@ export function battle(attackingMove, partnerPoke, wildPoke) {
     const ranNum = Math.floor(Math.random() * wildPoke.moveset.length)
     const wildMove = wildPoke.moveset[ranNum]
     // send a message with move
-    messages.push(`${wildPoke.name} used ${wildMove.name}!`)
+    messages.push({
+      message: `${wildPoke.name} used ${wildMove.name}!`,
+      attackingPoke: wildPoke.name,
+      defendingPokeHp: partnerPoke.stats.currentHp
+    })
     // check to see if that move will even do any damage
     if (wildMove.power > 0) {
       const wildAccCheck = Math.ceil(Math.random() * 100)
@@ -36,7 +40,11 @@ export function battle(attackingMove, partnerPoke, wildPoke) {
             partnerPoke.stats.currentHp = 0
             needsToAttack.partnerPoke = false
             // send a losing message
-            messages.push(`${partnerPoke.name} fainted!`)
+            messages.push({
+              message: `${partnerPoke.name} fainted!`,
+              attackingPoke: wildPoke.name,
+              defendingPokeHp: partnerPoke.stats.currentHp
+            })
           } else {
             // update partnerPoke currentHp
             partnerPoke.stats.currentHp = partnerPoke.stats.currentHp - Math.ceil(result / 2)
@@ -48,11 +56,19 @@ export function battle(attackingMove, partnerPoke, wildPoke) {
       } else {
         // the move misses
         // send a miss message
-        messages.push(`${wildMove.name} missed!`)
+        messages.push({
+          message: `${wildMove.name} missed!`,
+          attackingPoke: wildPoke.name,
+          defendingPokeHp: partnerPoke.stats.currentHp
+        })
       }
     } else {
       // send a doesn't do anything message
-      messages.push("Nothing happened.")
+      messages.push({
+        message: "Nothing happened.",
+        attackingPoke: wildPoke.name,
+        defendingPokeHp: partnerPoke.stats.currentHp
+      })
     }
   }
 
@@ -62,7 +78,11 @@ export function battle(attackingMove, partnerPoke, wildPoke) {
     hasAttacked.partnerPoke = true
     needsToAttack.partnerPoke = false
     // send a message with move
-    messages.push(`${partnerPoke.name} used ${attackingMove.name}!`)
+    messages.push({
+      message: `${partnerPoke.name} used ${attackingMove.name}!`,
+      attackingPoke: partnerPoke.name,
+      defendingPokeHp: wildPoke.stats.currentHp
+    })
     // check to see if the move will do any damage
     if (attackingMove.power > 0) {
       // check to see if the move hits
@@ -81,7 +101,11 @@ export function battle(attackingMove, partnerPoke, wildPoke) {
             wildPoke.stats.currentHp = 0
             needsToAttack.wildPoke = false
             // send a losing message
-            messages.push(`${wildPoke.name} fainted!`)
+            messages.push({
+              message: `${wildPoke.name} fainted!`,
+              attackingPoke: partnerPoke.name,
+              defendingPokeHp: wildPoke.stats.currentHp
+            })
           } else {
             // update partnerPoke currentHp
             wildPoke.stats.currentHp = wildPoke.stats.currentHp - Math.ceil(result / 2)
@@ -93,11 +117,19 @@ export function battle(attackingMove, partnerPoke, wildPoke) {
       } else {
         // the move misses
         // send a miss message
-        messages.push(`${attackingMove.name} missed!`)
+        messages.push({
+          message: `${attackingMove.name} missed!`,
+          attackingPoke: partnerPoke.name,
+          defendingPokeHp: wildPoke.stats.currentHp
+        })
       }
     } else {
       // send a doesn't do anything message
-      messages.push("Nothing happened.")
+      messages.push({
+        message: "Nothing happened.",
+        attackingPoke: partnerPoke.name,
+        defendingPokeHp: wildPoke.stats.currentHp
+      })
     }
   }
   // check to see if wildPoke still needs to attack
@@ -108,7 +140,11 @@ export function battle(attackingMove, partnerPoke, wildPoke) {
     const ranNum = Math.floor(Math.random() * wildPoke.moveset.length)
     const wildMove = wildPoke.moveset[ranNum]
     // send a message with move
-    messages.push(`${wildPoke.name} used ${wildMove.name}!`)
+    messages.push({
+      message: `${wildPoke.name} used ${wildMove.name}!`,
+      attackingPoke: wildPoke.name,
+      defendingPokeHp: partnerPoke.stats.currentHp
+    })
     // check to see if that move will even do any damage
     if (wildMove.power > 0) {
       const wildAccCheck = Math.ceil(Math.random() * 100)
@@ -127,7 +163,11 @@ export function battle(attackingMove, partnerPoke, wildPoke) {
             partnerPoke.stats.currentHp = 0
             needsToAttack.partnerPoke = false
             // send a losing message
-            messages.push(`${partnerPoke.name} fainted!`)
+            messages.push({
+              message: `${partnerPoke.name} fainted!`,
+              attackingPoke: wildPoke.name,
+              defendingPokeHp: partnerPoke.stats.currentHp
+            })
           } else {
             // update partnerPoke currentHp
             partnerPoke.stats.currentHp = partnerPoke.stats.currentHp - Math.ceil(result / 2)
@@ -139,11 +179,19 @@ export function battle(attackingMove, partnerPoke, wildPoke) {
       } else {
         // the move misses
         // send a miss message
-        messages.push(`${wildMove.name} missed!`)
+        messages.push({
+          message: `${wildMove.name} missed!`,
+          attackingPoke: wildPoke.name,
+          defendingPokeHp: partnerPoke.stats.currentHp
+        })
       }
     } else {
       // send a doesn't do anything message
-      messages.push("Nothing happened.")
+      messages.push({
+        message: "Nothing happened.",
+        attackingPoke: wildPoke.name,
+        defendingPokeHp: partnerPoke.stats.currentHp
+      })
     }
   }
   const returnObj = {

@@ -19,8 +19,8 @@ export default function Fight() {
   function handleSelected(move, partnerPoke, wildPoke) {
     if (move.name === currentMove.name) {
       const battleResponse = battle(move, partnerPoke, wildPoke);
-      setPartnerPokeHp(battleResponse?.partnerPoke.stats.currentHp);
-      setWildPokeHp(battleResponse?.wildPoke.stats.currentHp);
+      // setPartnerPokeHp(battleResponse?.partnerPoke.stats.currentHp);
+      // setWildPokeHp(battleResponse?.wildPoke.stats.currentHp);
       setMessages(battleResponse.messages);
       setCurrentMove(null);
       setAlreadySelected(false);
@@ -30,7 +30,16 @@ export default function Fight() {
   }
   return (
     <>
-      {messages.length ? <Message messages={messages} setMessages={setMessages}/> :
+      {messages.length ? (
+        <Message
+          messages={messages}
+          setMessages={setMessages}
+          partnerPoke={partnerPoke}
+          wildPoke={wildPoke}
+          setPartnerPokeHp={setPartnerPokeHp}
+          setWildPokeHp={setWildPokeHp}
+        />
+      ) : (
         <div id="fightContainer">
           <div id="moveset">
             {partnerPoke?.moveset.map((move, index) => (
@@ -58,7 +67,7 @@ export default function Fight() {
             </div>
           )}
         </div>
-      }
+      )}
     </>
   );
 }
