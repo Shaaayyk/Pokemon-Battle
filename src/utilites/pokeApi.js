@@ -56,10 +56,10 @@ async function getPokeMoveset(poke) {
     let num = Math.floor(Math.random() * moveArray.length)
     let currentMove = moveArray[num].move
     const duplicate = moveset.find(move => {
-      return move.name === currentMove.name
+      return move.name.toLowerCase() === currentMove.name.toLowerCase()
     })
     if (duplicate) {
-      console.log(`There is a duplicate , ${duplicate}`)
+      console.log(`There is a duplicate , ${duplicate.name}`)
       return
     }
     const response = await axios.get(currentMove.url)
