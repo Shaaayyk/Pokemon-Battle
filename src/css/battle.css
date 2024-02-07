@@ -94,6 +94,12 @@
 .progressContainer > p {
   justify-self: end;
   padding-right: 2px;
+  padding-left: 5px;
+  color: orange;
+  background-color: black;
+  font-weight: bold;
+  border-top-left-radius: 70%;
+  border-bottom-left-radius: 70%;
 }
 
 .progressContainer > progress {

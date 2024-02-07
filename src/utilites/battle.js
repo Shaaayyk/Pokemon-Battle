@@ -39,6 +39,8 @@ export function battle(attackingMove, partnerPoke, wildPoke) {
             // update currentHp to 0 
             partnerPoke.stats.currentHp = 0
             needsToAttack.partnerPoke = false
+            // update the previous message with correct currentHp
+            messages[messages.length - 1].defendingPokeHp = partnerPoke.stats.currentHp
             // send a losing message
             messages.push({
               message: `${partnerPoke.name} fainted!`,
@@ -48,10 +50,14 @@ export function battle(attackingMove, partnerPoke, wildPoke) {
           } else {
             // update partnerPoke currentHp
             partnerPoke.stats.currentHp = partnerPoke.stats.currentHp - Math.ceil(result / 2)
+            // update the current message with correct currentHp
+            messages[messages.length - 1].defendingPokeHp = partnerPoke.stats.currentHp
           }
         } else {
           // if the result is <= 0 make the damage taken to 1
           partnerPoke.stats.currentHp = partnerPoke.stats.currentHp - 1
+          // update the current message with correct currentHp
+          messages[messages.length - 1].defendingPokeHp = partnerPoke.stats.currentHp
         }
       } else {
         // the move misses
@@ -100,6 +106,8 @@ export function battle(attackingMove, partnerPoke, wildPoke) {
             // update wildPoke currentHp to 0
             wildPoke.stats.currentHp = 0
             needsToAttack.wildPoke = false
+            // update the previous message with correct currentHp
+            messages[messages.length - 1].defendingPokeHp = wildPoke.stats.currentHp
             // send a losing message
             messages.push({
               message: `${wildPoke.name} fainted!`,
@@ -109,10 +117,14 @@ export function battle(attackingMove, partnerPoke, wildPoke) {
           } else {
             // update partnerPoke currentHp
             wildPoke.stats.currentHp = wildPoke.stats.currentHp - Math.ceil(result / 2)
+            // update the current message with correct currentHp
+            messages[messages.length - 1].defendingPokeHp = wildPoke.stats.currentHp
           }
         } else {
           // if the result is <= 0 make the damage taken to 1
           wildPoke.stats.currentHp = wildPoke.stats.currentHp - 1
+          // update the current message with correct currentHp
+          messages[messages.length - 1].defendingPokeHp = wildPoke.stats.currentHp
         }
       } else {
         // the move misses
@@ -162,6 +174,8 @@ export function battle(attackingMove, partnerPoke, wildPoke) {
             // update currentHp to 0 
             partnerPoke.stats.currentHp = 0
             needsToAttack.partnerPoke = false
+            // update the previous message with correct currentHp
+            messages[messages.length - 1].defendingPokeHp = partnerPoke.stats.currentHp
             // send a losing message
             messages.push({
               message: `${partnerPoke.name} fainted!`,
@@ -171,10 +185,14 @@ export function battle(attackingMove, partnerPoke, wildPoke) {
           } else {
             // update partnerPoke currentHp
             partnerPoke.stats.currentHp = partnerPoke.stats.currentHp - Math.ceil(result / 2)
+            // update the current message with correct currentHp
+            messages[messages.length - 1].defendingPokeHp = partnerPoke.stats.currentHp
           }
         } else {
           // if the result is <= 0 make the damage taken to 1
           partnerPoke.stats.currentHp = partnerPoke.stats.currentHp - 1
+          // update the current message with correct currentHp
+          messages[messages.length - 1].defendingPokeHp = partnerPoke.stats.currentHp
         }
       } else {
         // the move misses

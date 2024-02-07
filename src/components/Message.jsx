@@ -8,10 +8,10 @@ export default function Message({
 }) {
   function handleClick(messages) {
     const currentMessage = messages.shift();
+    console.log(currentMessage)
     if (currentMessage?.attackingPoke === partnerPoke?.name) {
       setWildPokeHp(currentMessage?.defendingPokeHp)
-    }
-    if (currentMessage?.attackingPoke === wildPoke?.name) {
+    } else {
       setPartnerPokeHp(currentMessage?.defendingPokeHp)
     }
     const updatedMessages = [...messages];
