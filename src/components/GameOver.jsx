@@ -12,7 +12,6 @@ export default function GameOver() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(location.pathname);
     if (location.pathname.includes("defeat")) {
       setGameOverStatus("defeat");
     } else {

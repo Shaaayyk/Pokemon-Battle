@@ -17,6 +17,7 @@ export default function WildPokeLayout({ wildPoke, wildPokeHp }) {
           src={wildPoke?.sprites.default.front}
           alt={`${wildPoke?.name} image`}
         />
+        <div className="pokeShadow"></div>
       </div>
     </div>
   );

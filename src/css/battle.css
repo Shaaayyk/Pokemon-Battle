@@ -19,11 +19,14 @@
 #wildPokeLayout > .statsContainer {
   grid-column: 1/2;
   align-self: baseline;
+  border-radius: 5px;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 #wildPokeLayout > .pokeImage {
   grid-column: 2/3;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: center;
 }
@@ -38,6 +41,9 @@
 #partnerPokeLayout > .statsContainer {
   grid-column: 2/3;
   align-self: center;
+  border-radius: 5px;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 #partnerPokeLayout > .pokeImage {
@@ -50,6 +56,13 @@
 .pokeImage > img {
   width: 192px;
   height: 192px;
+}
+
+.pokeImage > .pokeShadow {
+  width: 160px;
+  height: 80px;
+  background: black;
+  border-radius: 50%;
 }
 
 .statsContainer {
@@ -144,6 +157,7 @@ progress {
   height: 20px;
   border-radius: 7px;
   width: 40vw;
+  transition: ease;
 }
 
 progress::-webkit-progress-bar {
@@ -152,6 +166,7 @@ progress::-webkit-progress-bar {
   height: 20px;
   border-radius: 7px;
   width: 40vw;
+  transition: ease;
 }
 
 progress::-webkit-progress-value {
@@ -160,6 +175,7 @@ progress::-webkit-progress-value {
   height: 20px;
   border-radius: 7px;
   width: 40vw;
+  transition: ease;
 }
 
 #fightContainer {
